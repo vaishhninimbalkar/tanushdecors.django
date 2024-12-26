@@ -1,4 +1,4 @@
-{% extends 'tanushdecors/base.html' %}
+{% extends 'tanushdecors/layout/base.html' %}
 
 {% load static %}
 
@@ -9,10 +9,32 @@
   <div class="container">
     <h1 class="my-4">Checkout</h1>
 
+    <h3 class="h6 mb-3">Your Order</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Product</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in cart_items %}
+        <tr>
+          <td>{{ item.product.name }}</td>
+          <td>({{ item.quantity }})</td>
+          <td>${{ item.product.price }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+  
+    {% if cart_items %}
     <div class="row">
       <div class="col-md-6 mb-5 mb-md-0">
         <h2 class="h3 mb-3 text-black">Billing Details</h2>
-        <form method="POST">
+        <form method="POST" action="order/">
           {% csrf_token %}
           <div class="form-group row">
             <div class="col-md-6">
@@ -46,28 +68,6 @@
               <input type="text" class="form-control" id="c_state_country" name="c_state_country" required>
             </div>
           </div>
-          
-          <h3 class="h6 mb-3">Your Order</h3>
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">Product</th>
-                <th scope="col">Image</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Remove</th>
-                <th scope="col">Total</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for item in cart_items %}
-              <tr>
-                <td>{{ item.name }} {{ item.image }} ({{ item.quantity }})</td>
-                <td>${{ item.remove }}</td>
-                <td>${{ item.price }}</td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
 
           <div class="form-group mt-3">
             <button type="submit" class="btn btn-black btn-lg py-3 btn-block">Place Order</button>
@@ -75,6 +75,7 @@
         </form>
       </div>
     </div>
+    {% endif %}
   </div>
 </div>
 {% endblock content %}

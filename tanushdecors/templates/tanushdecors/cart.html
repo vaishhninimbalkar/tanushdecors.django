@@ -1,108 +1,117 @@
-{% extends 'tanushdecors/base.html' %} {% load static %} {% block title %}Tanush
-Decors{% endblock title %} {% block content %}
+{% extends 'tanushdecors/layout/base.html' %}
 
-<style>
-  /* Add CSS styles for flex container and items */
-  .product-list {
-    display: flex;
-    flex-wrap: wrap; /* Allow items to wrap to the next row if necessary */
-    justify-content: space-between; /* Space items evenly along the main axis */
-    list-style: none; /* Remove list styles */
-    padding: 0;
-  }
+{% load static %}
 
-  .product-item {
-    flex: 1; /* Grow to fill available space evenly */
-    /* Limit item width to avoid overcrowding */
-    margin: 10px; /* Add spacing between items */
-    border: 1px solid #ccc; /* Add a border for visual separation */
-    padding: 10px;
-    text-align: center;
-  }
+{% block title %}Tanush Decors{% endblock title %}
 
-  /* Style the ".checkout-button " button */
-  .checkout-button {
-    margin-top: 20px;
-    margin-left: 20px;
-    background-color: #3b5d50;
-    color: #fff;
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    display: inline-block;
-    float: right; /* Align the button to the right */
-  }
+{% block content %}
 
-  /* Style for the total price button */
-  .total-price-btn {
-    background-color: #eee0d0; /* Green background */
-    color: rgb(6, 6, 6); /* White text */
-    border: none;
-    border-radius: 8px; /* Rounded corners */
-    padding: 15px 25px; /* Padding for a spacious button */
-    text-align: center;
-    width: 100%; /* Make button full width */
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
-    transition: all 0.3s ease; /* Smooth transition for hover effect */
-  }
+  <style>
+    /* Add CSS styles for flex container and items */
+    .product-list {
+      display: flex;
+      flex-wrap: wrap; /* Allow items to wrap to the next row if necessary */
+      justify-content: space-between; /* Space items evenly along the main axis */
+      list-style: none; /* Remove list styles */
+      padding: 0;
+    }
 
-  /* Change color on hover */
-  .total-price-btn:hover {
-    background-color: #c2a88b; /* Darker green when hovering */
-    transform: translateY(-2px); /* Slight lift effect */
-  }
+    .product-item {
+      flex: 1; /* Grow to fill available space evenly */
+      /* Limit item width to avoid overcrowding */
+      margin: 10px; /* Add spacing between items */
+      border: 1px solid #ccc; /* Add a border for visual separation */
+      padding: 10px;
+      text-align: center;
+    }
 
-  /* Style for the total price text */
-  .total-price {
-    font-size: 1.5em; /* Larger text */
-    margin: 0; /* Remove default margin */
-  }
+    /* Style the ".checkout-button " button */
+    .checkout-button {
+      margin-top: 20px;
+      margin-left: 20px;
+      background-color: #3b5d50;
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      display: inline-block;
+      float: right; /* Align the button to the right */
+    }
 
-  /* Style for the continue shopping link */
-  .continue-shopping-btn {
-    display: inline-block; /* Make it behave like a block */
-    margin-top: 20px; /* Space between button and link */
-    padding: 10px 20px; /* Padding for the link */
-    background-color: #3b5d50; /* Blue background */
-    color: white; /* White text */
-    text-decoration: none; /* Remove underline */
-    border-radius: 5px; /* Rounded corners */
-    transition: all 0.3s ease; /* Smooth transition for hover effect */
-  }
+    /* Style for the total price button */
+    .total-price-btn {
+      background-color: #eee0d0; /* Green background */
+      color: rgb(6, 6, 6); /* White text */
+      border: none;
+      border-radius: 8px; /* Rounded corners */
+      padding: 15px 25px; /* Padding for a spacious button */
+      text-align: center;
+      width: 100%; /* Make button full width */
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+      transition: all 0.3s ease; /* Smooth transition for hover effect */
+    }
 
-  /* Change color on hover */
-  .continue-shopping-btn:hover {
-    background-color: rgb(146, 140, 140); /* Darker blue when hovering */
-    transform: translateY(-2px); /* Slight lift effect */
-  }
-</style>
+    /* Change color on hover */
+    .total-price-btn:hover {
+      background-color: #c2a88b; /* Darker green when hovering */
+      transform: translateY(-2px); /* Slight lift effect */
+    }
 
-<h1>Your Shopping Cart</h1>
+    /* Style for the total price text */
+    .total-price {
+      font-size: 1.5em; /* Larger text */
+      margin: 0; /* Remove default margin */
+    }
 
-<div class="product-list">
-  {% for item in cart_items %}
-  <div class="product-item">
-    <img
-      src="{{ item.product.image.url }}"
-      alt="{{ item.product.name }}"
-      style="max-width: 100px; max-height: 100px"
-    />
-    <p>{{ item.product.name }} ({{ item.quantity }})</p>
-    <p>Price: ${{ item.product.price }}</p>
+    /* Style for the continue shopping link */
+    .continue-shopping-btn {
+      display: inline-block; /* Make it behave like a block */
+      margin-top: 20px; /* Space between button and link */
+      padding: 10px 20px; /* Padding for the link */
+      background-color: #3b5d50; /* Blue background */
+      color: white; /* White text */
+      text-decoration: none; /* Remove underline */
+      border-radius: 5px; /* Rounded corners */
+      transition: all 0.3s ease; /* Smooth transition for hover effect */
+    }
 
-    <a href="{% url 'tanushdecors:remove_from_cart' item.id %}">Remove</a>
+    /* Change color on hover */
+    .continue-shopping-btn:hover {
+      background-color: rgb(146, 140, 140); /* Darker blue when hovering */
+      transform: translateY(-2px); /* Slight lift effect */
+    }
+  </style>
+
+  <h1>Your Shopping Cart</h1>
+
+  <div class="product-list">
+    {% for item in cart_items %}
+    <div class="product-item">
+      <img
+        src="{{ item.product.image.url }}"
+        alt="{{ item.product.name }}"
+        style="max-width: 100px; max-height: 100px"
+      />
+      <p>{{ item.product.name }} ({{ item.quantity }})</p>
+      <p>Price: ${{ item.product.price }}</p>
+
+      <a href="{% url 'tanushdecors:remove_from_cart' item.id %}">Remove</a>
+    </div>
+    {% empty %}
+    <p>Your cart is empty.</p>
+    {% endfor %}
   </div>
-  {% empty %}
-  <p>Your cart is empty.</p>
-  {% endfor %}
-</div>
-<button class="total-price-btn">
-  <p class="total-price">Total Price: ${{ total_price }}</p>
-</button>
+  <button class="total-price-btn">
+    <p class="total-price">Total Price: ${{ total_price }}</p>
+  </button>
 
-<a href="{% url 'tanushdecors:shop' %}" class="continue-shopping-btn"
-  >Continue Shopping</a
->
-<a href="{% url 'tanushdecors:checkout' %}" class="checkout-button">Checkout</a>
+  <a href="{% url 'tanushdecors:shop' %}" class="continue-shopping-btn">Continue Shopping</a>
+
+  {% if cart_items %}
+  <a href="{% url 'tanushdecors:checkout' %}" class="checkout-button">
+    Checkout
+  </a>
+  {% endif %}
+
 {% endblock content %}
