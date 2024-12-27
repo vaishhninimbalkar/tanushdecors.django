@@ -92,7 +92,6 @@ def order(request):
         
         # Retrieve the cart items (example query)
         cart_items = CartItem.objects.filter(user=request.user)
-        print("# carts: ", cart_items)
         
         # Format the email message
         order_details = ""
@@ -113,12 +112,14 @@ def order(request):
         Total Price: ${sum(item.product.price * item.quantity for item in cart_items)}
         """
 
-        print("send email")
         # Send the email
         send_mail(
             subject="Order Confirmation",
             message=email_body,
+
+            # sender of email as show in email
             from_email="tanushdecor@gmail.com",
+            
             recipient_list=[email],
             fail_silently=False,
         )
@@ -126,8 +127,9 @@ def order(request):
         # Clear the cart (optional)
         cart_items.delete()
 
-        # Redirect to a success page
-        print('redirect to order_success')
+        # Add code here if you ant to store/save the order
+        # look at the add_cart function which also stores data in a table
+        
         return redirect('tanushdecors:order_success')
 
     # Render the checkout page
