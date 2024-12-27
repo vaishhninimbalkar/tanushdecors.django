@@ -1,15 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
 
 :root {
-  --main-color-fg: #f9bf29
+  --main-color-fg: #f9bf29;
+  --main-color-header-bg: #eee0d0;
 }
-
 
 body {
   overflow-x: hidden;
   position: relative;
 }
-
 
 body {
   font-family: "Inter", sans-serif;
@@ -1196,5 +1195,29 @@ form#loginForm {
       padding: 15px;
       margin: 20px 0;
     }
+  }
+}
+
+.logout-form {
+  display: flex; /* Align image within the button */
+  align-items: bottom;
+  vertical-align: middle; 
+}
+
+.logout-button {
+  border: 0px solid white !important;
+  background-color: var(--main-color-header-bg) !important;
+
+  margin-left: 10px;
+  color: black;
+
+  display: flex; /* Align image within the button */
+  align-items: bottom;
+
+  img {
+    width: 25px;
+    height: auto;
+
+    vertical-align: middle; 
   }
 }

@@ -65,20 +65,30 @@
             <li class="nav-item {% if request.path == '/about/'    %}active{% endif %}"><a class="nav-link" style="color: black !important; font-weight: 900" href="/about">About us</a></li>
             <li class="nav-item {% if request.path == '/services/' %}active{% endif %}"><a class="nav-link" style="color: black !important; font-weight: 900" href="/services">Services</a></li>
             <li class="nav-item {% if request.path == '/contact/'  %}active{% endif %}"><a class="nav-link" style="color: black !important; font-weight: 900" href="/contact">Contact us</a></li>
-          </ul>
-
-          <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
 
             {% if user.is_authenticated %}
-              <li><a class="nav-link" style="color: #f9bf29 !important; font-weight: 900" href="/accounts/logout">Hi {{ user.username }}!</a></li>
-              <li><a class="nav-link" style="color: black !important; font-weight: 900" href="/accounts/logout"><img class="nav-icon" src="{% static 'images/logout.png' %}" /></a></li>
+              <li class="nav-item"><a class="nav-link" style="color: #f9bf29 !important; font-weight: 900" href="/accounts/logout">Hi {{ user.username }}!</a></li>
 
-              <li><a class="nav-link" style="color: black !important; font-weight: 900" href="/cart"><img src="{% static 'images/cart.svg' %}"/></a> </li>
+              <li class="nav-item">
+                <form method="post" class="logout-form" action="{% url 'logout' %}">
+                  {% csrf_token %}
+                  <button type="submit" class="logout-button"><img src="{% static 'images/logout.png' %}" /></button>
+                </form>
+              </li>
+
+              <li class="nav-item">
+                <form method="get" class="logout-form" action="/cart">
+                  {% csrf_token %}
+                  <button type="submit" class="logout-button"><img src="{% static 'images/cart.svg' %}" /></button>
+                </form>
+              </li>
             {% else %}
-              <li><a class="nav-link" style="color: #f9bf29 !important; font-weight: 900" href="{% url 'login' %}">Log In</a></li>
-              <li><a class="nav-link" style="color: black !important; font-weight: 900" href="/accounts/login"><img src="{% static 'images/user.svg' %}" /></a></li>
+            <li class="nav-item"><a class="nav-link" style="color: #f9bf29 !important; font-weight: 900" href="{% url 'login' %}">Log In</a></li>
+            <li class="nav-item"><a class="nav-link" style="color: black !important; font-weight: 900" href="/accounts/login"><img src="{% static 'images/user.svg' %}" /></a></li>
             {% endif %}
           </ul>
+
+
         </div>
       </div>
     </nav>
