@@ -94,7 +94,7 @@
         style="max-width: 100px; max-height: 100px"
       />
       <p>{{ item.product.name }} ({{ item.quantity }})</p>
-      <p>Price: ${{ item.product.price }}</p>
+      <p>Price: ₹{{ item.product.price }}</p>
 
       <a href="{% url 'tanushdecors:remove_from_cart' item.id %}">Remove</a>
     </div>
@@ -103,7 +103,7 @@
     {% endfor %}
   </div>
   <button class="total-price-btn">
-    <p class="total-price">Total Price: ${{ total_price }}</p>
+    <p class="total-price">Total Price: ₹{{ total_price }}</p>
   </button>
 
   <a href="{% url 'tanushdecors:shop' %}" class="continue-shopping-btn">Continue Shopping</a>

@@ -81,7 +81,7 @@
     style="
       background: url('/static/images/background.png') no-repeat center
         center/cover;
-      height: 65vh;
+      height: 75vh;
       position: relative;
     "
   >
@@ -698,13 +698,13 @@
       const total = item.price * item.quantity;
       const row = `
                         <tr>
-                          <td><img src="${item.image}" class="img-fluid" style="width: 50px;"></td>
-                          <td>${item.name}</td>
-                          <td>${item.price}</td>
-                          <td>${item.quantity}</td>
-                          <td>${total}</td>
-                          <td><button class="btn btn-danger" onclick="removeFromCart('${item.name}')">Remove</button></td>
-                          <td><button class="btn btn-success" onclick="buyNow('${item.name}', ${item.price}, '${item.image}')">Buy Now</button></td>
+                          <td><img src="₹{item.image}" class="img-fluid" style="width: 50px;"></td>
+                          <td>₹{item.name}</td>
+                          <td>₹{item.price}</td>
+                          <td>₹{item.quantity}</td>
+                          <td>₹{total}</td>
+                          <td><button class="btn btn-danger" onclick="removeFromCart('₹{item.name}')">Remove</button></td>
+                          <td><button class="btn btn-success" onclick="buyNow('₹{item.name}', ₹{item.price}, '₹{item.image}')">Buy Now</button></td>
                         </tr>
                       `;
       cartItemsContainer.insertAdjacentHTML("beforeend", row);
@@ -722,7 +722,7 @@
   // Function to handle "Buy Now" button
   function buyNow(name, price, image) {
     // Redirect to a checkout page or display product details (here's an example)
-    alert(`Proceeding to buy: ${name}`);
+    alert(`Proceeding to buy: ₹{name}`);
     window.location.href = "checkout.html"; // You can customize this to the actual checkout page
   }
 
