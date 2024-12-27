@@ -127,11 +127,12 @@ def order(request):
         cart_items.delete()
 
         # Redirect to a success page
-        return redirect('order_success')
+        print('redirect to order_success')
+        return redirect('tanushdecors:order_success')
 
     # Render the checkout page
     return render(request, 'checkout.html')
 
 
 def order_success(request):
-    return render(request, 'order_success.html')
+    return render(request, 'tanushdecors/order_success.html')

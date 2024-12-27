@@ -20,7 +20,7 @@ urlpatterns = [
 
     path('checkout/',               views.checkout, name='checkout'),
     path('checkout/order/',         views.order, name='order'),
-    path('checkout/order_success/', views.order_success, name='order_success'),
+    path('checkout/order/success/', views.order_success, name='order_success'),
 
 ]
 

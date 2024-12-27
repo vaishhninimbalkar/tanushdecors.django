@@ -292,9 +292,11 @@
   
           <strong class="product-price">₹{{ product.price }}</strong>
   
-          <a class="btn add-to-cart-btn" href="{% url 'tanushdecors:checkout' %}">Buy now</a>
+          <a class="btn add-to-cart-btn" href="{% url 'tanushdecors:checkout' %}">
+            <img src="{% static 'images/cart.svg' %}" alt="Add to Cart">
+          </a>
           <a class="btn add-to-cart-btn" href="{% url 'tanushdecors:add_to_cart' product.id %}">
-              <img src="{% static 'images/cart.svg' %}" alt="Add to Cart">
+              Buy now
           </a>
           
         </div>
