@@ -82,3 +82,6 @@ class OrderItem(models.Model):
     # Method to calculate total price of this order item (quantity * price)
     def total_price(self):
         return self.quantity * self.product.price
+    
+
+    

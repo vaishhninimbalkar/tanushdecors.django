@@ -6,41 +6,111 @@
 
 {% block content %}
 
+<style>
+  .cart-items-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .cart-items-list li {
+    margin-bottom: 15px;
+    padding: 10px;
+    background: #ffffff;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+  }
+  ul li img {
+    margin-right: 10px;
+    border-radius: 4px;
+  }
+
+
+  .order-history-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .order-history-list li {
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #f8f9fa;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+  }
+
+  .order-item-details ul {
+    list-style: disc;
+    padding-left: 20px;
+    margin-top: 10px;
+  }
+
+  .order-item-details ul li {
+    margin-bottom: 8px;
+    padding: 5px;
+    background: #f1f3f5;
+    border-radius: 4px;
+    font-size: 0.9rem;
+  }
+</style>
+
 <div class="container mt-5">
-    <h2>Profile of {{ username }}</h2>
+  <h2>Profile of {{ user.first_name }} {{ user.last_name }} ({{ username }})</h2>
 
-    <h3>Cart Details</h3>
-    {% if cart_items %}
-      <ul>
-        {% for item in cart_items %}
-          <li>
-            <strong>{{ item.product.name }}</strong> - Quantity: {{ item.quantity }} - Price: ₹{{ item.product.price }} (Total: ₹{{ item.total_price }})
-          </li>
-        {% endfor %}
-      </ul>
-    {% else %}
-      <p>Your cart is empty.</p>
-    {% endif %}
+  <h3>Cart Details</h3>
+  {% if cart_items %}
+    <ul class="cart-items-list">
+      {% for item in cart_items %}
+        <li>
+          <img
+            src="{{ item.product.image.url }}"
+            style="max-width: 50px; max-height: 50px"
+          />
+          <div>
+            <strong>{{ item.product.name }}</strong><br />
+            Quantity: {{ item.quantity }}<br />
+            Price: ₹{{ item.product.price }}<br />
+            Total: ₹{{ item.total_price }}
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Your cart is empty.</p>
+  {% endif %}
 
-    <h3>Order History</h3>
-    {% if orders %}
-      <ul>
-        {% for order in orders %}
-          <li>
-            <strong>Order ID:</strong> {{ order.id }} - <strong>Date:</strong> {{ order.created_at }} - <strong>Status:</strong> {{ order.status }} - <strong>Total:</strong> ₹{{ order.total_price }}
+  <h3>Order History</h3>
+  {% if orders %}
+    <ul class="order-history-list">
+      {% for order in orders %}
+        <li>
+          <strong>Order ID:</strong> {{ order.id }}<br />
+          <strong>Date:</strong> {{ order.created_at }}<br />
+          <strong>Status:</strong> {{ order.status }}<br />
+          <strong>Total:</strong> ₹{{ order.total_price }}
+          <div class="order-item-details">
             <ul>
               {% for item in order.items.all %}
-                <li>{{ item.product.name }} - Quantity: {{ item.quantity }} - Price: ₹{{ item.product.price }} (Total: ₹{{ item.total_price }})</li>
+                <li>
+                  <img
+                    src="{{ item.product.image.url }}"
+                    style="max-width: 30px; max-height: 30px"
+                  />
+                  {{ item.product.name }} - Quantity: {{ item.quantity }} - Price: ₹{{ item.product.price }} (Total: ₹{{ item.total_price }})
+                </li>
               {% endfor %}
             </ul>
-          </li>
-        {% endfor %}
-      </ul>
-    {% else %}
-      <p>You have not placed any orders yet.</p>
-    {% endif %}
-    <a href="{% url 'tanushdecors:shop' %}" class="continue-shopping-btn">Continue Shopping</a>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>You have not placed any orders yet.</p>
+  {% endif %}
+  <a href="{% url 'tanushdecors:shop' %}" class="continue-shopping-btn">Continue Shopping</a>
+</div>
 
-  </div>
- 
 {% endblock content %}
