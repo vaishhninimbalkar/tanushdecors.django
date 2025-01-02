@@ -67,14 +67,18 @@
             <li class="nav-item {% if request.path == '/contact/'  %}active{% endif %}"><a class="nav-link" style="color: black !important; font-weight: 900" href="/contact">Contact us</a></li>
 
             {% if user.is_authenticated %}
-              <li class="nav-item"><a class="nav-link" style="color: #f9bf29 !important; font-weight: 900" href="/accounts/logout">Hi {{ user.username }}!</a></li>
-
-              <li class="nav-item">
-                <form method="post" class="logout-form" action="{% url 'logout' %}">
-                  {% csrf_token %}
-                  <button type="submit" class="logout-button"><img src="{% static 'images/logout.png' %}" /></button>
-                </form>
-              </li>
+            <li class="nav-item">
+              <a class="nav-link" style="color: #f9bf29 !important; font-weight: 900" href="{% url 'tanushdecors:profile' %}">Hi {{ user.username }}!</a>
+            </li>
+          
+            <li class="nav-item">
+              <form method="post" class="logout-form" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="logout-button">
+                  <img src="{% static 'images/logout.png' %}" />
+                </button>
+              </form>
+            </li>
 
               <li class="nav-item">
                 <form method="get" class="logout-form" action="/cart">

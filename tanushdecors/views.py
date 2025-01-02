@@ -3,8 +3,7 @@ from django.views import generic  # type: ignore
 from django.utils import timezone  # type: ignore
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
-from .models import CartItem, Product
-
+from .models import CartItem, Product, Order, OrderItem
 class IndexView(generic.ListView):
     """
     IndexView: Displays the latest products.
@@ -43,6 +42,9 @@ def thankyou(request):
 
 def login(request):
     return render(request, 'tanushdecors/login.html')
+
+def profile(request):
+    return render(request, 'tanushdecors/profile.html')
 
 @login_required(login_url='login')  # Redirects to the login page if not logged in
 def checkout(request):
@@ -120,3 +122,18 @@ def order(request):
 
 def order_success(request):
     return render(request, 'tanushdecors/order_success.html')
+
+
+@login_required
+def profile(request):
+    # Get the user's cart items
+    cart_items = CartItem.objects.filter(user=request.user)
+    
+    # Get the user's orders (you might have an Order model for this)
+    orders = Order.objects.filter(user=request.user)
+    
+    return render(request, 'tanushdecors/profile.html', {
+        'cart_items': cart_items,
+        'orders': orders,
+        'username': request.user.username
+    })

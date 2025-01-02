@@ -26,6 +26,9 @@ urlpatterns = [
 
     # Add login path
     path('login/', views.login, name='login'),
+
+    # Add profile path
+    path('profile/', views.profile, name='profile'),
 ]
 
 # Add this for serving media files during development
