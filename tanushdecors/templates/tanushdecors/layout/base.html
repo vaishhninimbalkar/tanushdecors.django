@@ -65,10 +65,10 @@
             <li class="nav-item {% if request.path == '/about/'    %}active{% endif %}"><a class="nav-link" style="color: black !important; font-weight: 900" href="/about">About us</a></li>
             <li class="nav-item {% if request.path == '/services/' %}active{% endif %}"><a class="nav-link" style="color: black !important; font-weight: 900" href="/services">Services</a></li>
             <li class="nav-item {% if request.path == '/contact/'  %}active{% endif %}"><a class="nav-link" style="color: black !important; font-weight: 900" href="/contact">Contact us</a></li>
-
+             
             {% if user.is_authenticated %}
             <li class="nav-item">
-              <a class="nav-link" style="color: #f9bf29 !important; font-weight: 900" href="{% url 'tanushdecors:profile' %}">Hi {{ user.username }}!</a>
+              <a class="nav-link" style="color: #2c2c2a !important; font-weight: 900" href="{% url 'tanushdecors:profile' %}">Hi {{ user.username }}!</a>
             </li>
           
             <li class="nav-item">
@@ -137,26 +137,10 @@
               <a href="#" class="footer-logo">Tanush decors<span>.</span></a>
             </div>
             <p class="mb-4">
-              Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio
-              quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam
-              vulputate velit imperdiet dolor tempor tristique. Pellentesque
-              habitant
+              "Facilitate smooth processes with ease and efficiency. Live with purpose and embrace action. Ensure balance with thoughtful approaches. Design solutions to overcome challenges and achieve long-term goals. Residents thrive in a harmonious environment."
             </p>
 
-            <ul class="list-unstyled custom-social">
-              <li>
-                <a href="#"><span class="fa fa-brands fa-facebook-f"></span></a>
-              </li>
-              <li>
-                <a href="#"><span class="fa fa-brands fa-twitter"></span></a>
-              </li>
-              <li>
-                <a href="#"><span class="fa fa-brands fa-instagram"></span></a>
-              </li>
-              <li>
-                <a href="#"><span class="fa fa-brands fa-linkedin"></span></a>
-              </li>
-            </ul>
+            
           </div>
 
           <div class="col-lg-8">
@@ -187,35 +171,11 @@
                 </ul>
               </div>
 
-              <div class="col-6 col-sm-6 col-md-3">
-                <ul class="list-unstyled">
-                  <li><a href="#">Nordic Chair</a></li>
-                  <li><a href="#">Kruzo Aero</a></li>
-                  <li><a href="#">Ergonomic Chair</a></li>
-                </ul>
-              </div>
+              
             </div>
           </div>
         </div>
-        
-
-        <!---
-        <div class="border-top copyright">
-          <div class="row pt-4">
-            <div class="col-lg-6">
-              <p class="mb-2 text-center text-lg-start">
-                Copyright &copy; 2025
-              </p>
-            </div>
-
-            <div class="col-lg-6 text-center text-lg-end">
-              <ul class="list-unstyled d-inline-flex ms-auto">
-                <li class="me-4"><a href="#">Terms &amp; Conditions</a></li>
-                <li><a href="#">Privacy Policy</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
+    
        
       </div>
       </footer>

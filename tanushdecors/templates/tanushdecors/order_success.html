@@ -5,7 +5,76 @@
 {% block title %}Tanush Decors{% endblock title %}
 
 {% block content %}
-<h2>Thank you for your order!</h2>
-<p>You will receive a confirmation email shortly.</p>
+<div style="text-align: center; margin-top: 50px;">
+  <h2 style="font-family: Arial, sans-serif; color: #333;">Thank you for your order!</h2>
+  <p style="font-family: Arial, sans-serif; color: #555; font-size: 16px;">You will receive a confirmation email shortly.</p>
 
+  <button class="gpay-btn" id="gpayBtn">
+    <img src="{% static 'images/gpay.png' %}" alt="Google Pay Logo" style="height: 24px; vertical-align: middle; margin-right: 10px;">
+    Pay with Google Pay
+  </button>
+
+  <div class="qr-fallback" id="qrFallback">
+    <img src="{% static 'images/qr.jpg' %}" alt="Google Pay QR Code">
+    <p>Scan to pay with any UPI app</p>
+  </div>
+</div>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+  }
+
+  .gpay-btn {
+    background-color: #4285F4;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 25px;
+    font-size: 16px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+  }
+
+  .gpay-btn:hover {
+    background-color: #357AE8;
+  }
+
+  .qr-fallback {
+    display: none;
+    text-align: center;
+    margin-top: 30px;
+  }
+
+  .qr-fallback img {
+    width: 200px;
+    height: auto;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+  }
+
+  .qr-fallback p {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #666;
+  }
+</style>
+
+<script>
+  document.getElementById("gpayBtn").addEventListener("click", function () {
+    const upiLink = "upi://pay?pa=varadadeodhar7@okicici&pn=VaradaDeodhar&am=100&cu=INR&tn=OrderPayment";
+    
+    // Attempt to open the UPI app
+    window.location.href = upiLink;
+
+    // Show the QR code as fallback
+    setTimeout(() => {
+      document.getElementById("qrFallback").style.display = "block";
+    }, 1000);
+  });
+</script>
 {% endblock content %}

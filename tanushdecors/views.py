@@ -115,6 +115,7 @@ def order(request):
 
         order_details = ""
         for item in cart_items:
+            # order_details += f'<img src="{item.product.image_url}" alt="{item.product.name}">\n'
             order_details += f"Product: {item.product.name}\n"
             order_details += f"Quantity: {item.quantity}\n"
             order_details += f"Price: ₹{item.product.price}\n\n"
@@ -148,6 +149,7 @@ def order(request):
 
         for item in cart_items:
             order.items.create(
+                
                 product=item.product,
                 quantity=item.quantity,
                 # price=item.product.price
