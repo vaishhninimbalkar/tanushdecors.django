@@ -273,18 +273,19 @@ a.more {
 }
 .btn.btn-secondary {
   color: #2f2f2f;
-  background: #b39392;
+  background: #eee0d0;
   border: 3px solid black;
 }
 .btn.btn-secondary:hover {
-  background: rgb(102, 99, 99);
+  background: #000;
   border: 3px solid #b39392;
 }
 .btn.btn-white-outline {
   background: transparent;
   border-width: 2px;
-  border-color: black;
-  color: black;
+  border-color: #eee0d0;
+  color: #eee0d0;
+  
 }
 .btn.btn-white-outline:hover {
   border-color: white;
@@ -955,7 +956,7 @@ textarea {
 /* Intro Text Animation */
 .intro-excerpt h1 {
   opacity: 0;
-  color: #b39392;
+  color: #eee0d0;
   animation: slideInLeft 1s forwards;
   animation-delay: 0.5s; /* Delay for the text */
 }
