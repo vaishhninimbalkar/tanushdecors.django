@@ -1,5 +1,6 @@
 django
 django-cors-headers
 django-rest-framework
+django_extensions
  
 Pillow 
